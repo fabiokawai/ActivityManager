@@ -437,15 +437,9 @@ public class MainActivity extends AppCompatActivity {
                     startActivityForResult(i, 9);
                 }
                 catch (Exception e){}
-
-
             }
             else{
                 Toast.makeText(this, "Sem informações disponíveis", Toast.LENGTH_SHORT).show();
             }
-
-
-
-
     }
 }
