@@ -388,7 +388,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 try{
                     params.putStringArrayList("listMonday", mondayActivities);
-                    params.putInt("mondayImportance", getAverageImportance(monday));
+                    //params.putInt("mondayImportance", getAverageImportance(monday));
+                    params.putInt("mondayImportance", monday.getHighestCountProgress());
                     params.putString("remainingMonday", remainingMonday.getText().toString());
                 }
                 catch (Exception e){
@@ -397,7 +398,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 try{
                     params.putStringArrayList("listTuesday", tuesdayActivities);
-                    params.putInt("tuesdayImportance", getAverageImportance(tuesday));
+                    //params.putInt("tuesdayImportance", getAverageImportance(tuesday));
+                    params.putInt("tuesdayImportance", tuesday.getHighestCountProgress());
                     params.putString("remainingTuesday", remainingTuesday.getText().toString());
                 }
                 catch (Exception e){
@@ -405,7 +407,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 try{
                     params.putStringArrayList("listWednesday", wednesdayActivities);
-                    params.putInt("wednesdayImportance", getAverageImportance(wednesday));
+                    //params.putInt("wednesdayImportance", getAverageImportance(wednesday));
+                    params.putInt("wednesdayImportance", wednesday.getHighestCountProgress());
                     params.putString("remainingWednesday", remainingWednesday.getText().toString());
                 }
                 catch (Exception e){
@@ -413,7 +416,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 try{
                     params.putStringArrayList("listThursday", thursdayActivities);
-                    params.putInt("thursdayImportance", getAverageImportance(thursday));
+                    //params.putInt("thursdayImportance", getAverageImportance(thursday));
+                    params.putInt("thursdayImportance", thursday.getHighestCountProgress());
                     params.putString("remainingThursday", remainingThursday.getText().toString());
                 }
                 catch (Exception e){
@@ -421,7 +425,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 try{
                     params.putStringArrayList("listFriday", fridayActivities);
-                    params.putInt("fridayImportance", getAverageImportance(friday));
+                    //params.putInt("fridayImportance", getAverageImportance(friday));
+                    params.putInt("fridayImportance", friday.getHighestCountProgress());
                     params.putString("remainingFriday", remainingFriday.getText().toString());
                 }
                 catch (Exception e){

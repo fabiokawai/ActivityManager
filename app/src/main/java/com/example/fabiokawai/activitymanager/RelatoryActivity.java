@@ -2,6 +2,7 @@ package com.example.fabiokawai.activitymanager;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -103,25 +104,16 @@ public class RelatoryActivity extends AppCompatActivity {
                 listThursday.setAdapter(adapterThursday);
                 listFriday.setAdapter(adapterFriday);
 
-                importance = params.getInt("mondayImportance", 0);
-                setHexNumber(colorMonday, importance, (byte)0);
-                setHexNumber(colorMonday,255-importance, (byte)1);
-
-                importance = params.getInt("tuesdayImportance", 0);
-                setHexNumber(colorTuesday, importance, (byte)0);
-                setHexNumber(colorTuesday,255-importance, (byte)1);
-
-                importance = params.getInt("wednesdayImportance", 0);
-                setHexNumber(colorWednesday, importance, (byte)0);
-                setHexNumber(colorWednesday,255-importance, (byte)1);
-
-                importance = params.getInt("thursdayImportance", 0);
-                setHexNumber(colorThursday, importance, (byte)0);
-                setHexNumber(colorThursday,255-importance, (byte)1);
-
-                importance = params.getInt("fridayImportance", 0);
-                setHexNumber(colorFriday, importance, (byte)0);
-                setHexNumber(colorFriday,255-importance, (byte)1);
+                importance = params.getInt("mondayImportance", 999);
+                setColor(colorMonday, importance);
+                importance = params.getInt("tuesdayImportance", 999);
+                setColor(colorTuesday, importance);
+                importance = params.getInt("wednesdayImportance", 999);
+                setColor(colorWednesday, importance);
+                importance = params.getInt("thursdayImportance", 999);
+                setColor(colorThursday, importance);
+                importance = params.getInt("fridayImportance", 999);
+                setColor(colorFriday, importance);
 
                 titleMonday.setText(titleMonday.getText() + " (" + params.getString("remainingMonday") + " restantes" + "  )");
                 titleTuesday.setText(titleTuesday.getText() + " (" +  params.getString("remainingTuesday") + " restantes" + "  )");
@@ -131,16 +123,29 @@ public class RelatoryActivity extends AppCompatActivity {
             }
         }
 
-
     }
 
-    private void setColor(TextView colorBox, String s){
-        colorBox.setBackgroundColor(Color.parseColor(s));
+    public String toHex(int progress){
+        String color;
+        if (progress == 999){
+            color = "#FFFFFF";
+        }
+        else {
+            String c0 = Integer.toHexString(progress);
+            String c1 = Integer.toHexString(255 - progress);
+            String c2 = "00";
+            String[] hexColor = {"00", "00", "00"};
+            hexColor[(byte) 0] = (c0.length() == 2 ? "" : 0) + c0;
+            hexColor[(byte) 1] = (c1.length() == 2 ? "" : 0) + c1;
+            hexColor[(byte) 2] = (c2.length() == 2 ? "" : 0) + c2;
+            color = "#" + hexColor[0] + hexColor[1] + hexColor[2];
+        }
+        return color;
     }
 
-    private void setHexNumber(TextView colorBox, int progress, byte color){
-        String c = Integer.toHexString(progress);
-        hexColor[color] = (c.length() == 2 ? "":"0") + c;
-        setColor(colorBox,"#" + hexColor[0] + hexColor[1] + "00");
+    public void setColor(TextView colorBox, int progress) {
+        String color = toHex(progress);
+        colorBox.setBackgroundColor(Color.parseColor(color));
     }
+
 }

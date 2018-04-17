@@ -11,6 +11,8 @@ public class DayWeek {
     private int remainingRoutine;
     private List<DailyActivity> dailyRoutine = new ArrayList<DailyActivity>();
 
+
+
     public int getRoutine() {
         return routine;
     }
@@ -45,6 +47,29 @@ public class DayWeek {
         for(DailyActivity dailyActivity:dailyRoutine){
             this.remainingRoutine -= dailyActivity.getMinutes();
         }
+    }
+
+
+    public int getHighestCountProgress(){
+        int highestCount = 0;
+        int highestCountImportance = 999;
+        int count = 0;
+
+        for (DailyActivity currentActivity:dailyRoutine) {
+            count = 0;
+            int currentImportance = currentActivity.getImportance();
+            for (DailyActivity activity: dailyRoutine) {
+                if (activity.getImportance() == currentImportance){
+                    count +=1;
+
+                }
+            }
+            if (count > highestCount){
+                highestCount = count;
+                highestCountImportance = currentActivity.getImportance();
+            }
+        }
+        return highestCountImportance;
     }
 
     public DayWeek(int dayRoutine){
